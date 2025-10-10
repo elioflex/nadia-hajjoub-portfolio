@@ -1,0 +1,27 @@
+{
+  "name": "nadia-hajjoub-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio professionnel de Nadia Hajjoub - Sociologue & Chercheuse",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8001",
+    "build": "echo 'Site statique - pas de build nécessaire'",
+    "deploy": "echo 'Déploiement via Netlify'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/USERNAME/nadia-hajjoub-portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "sociologue",
+    "recherche",
+    "nadia-hajjoub",
+    "responsive",
+    "mobile-first"
+  ],
+  "author": "Nadia Hajjoub <nadia95046@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://nadia-hajjoub.netlify.app"
+}
