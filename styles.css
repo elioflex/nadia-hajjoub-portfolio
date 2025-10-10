@@ -399,6 +399,22 @@ section {
     }
 }
 
+/* Corrections spécifiques pour vrais appareils mobiles */
+@media (max-width: 480px) {
+    section {
+        padding: var(--space-md) 0;
+    }
+    
+    .experience-category {
+        margin-bottom: var(--space-md) !important;
+    }
+    
+    /* Correction pour Safari iOS et vrais mobiles */
+    .experience-category:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
 .section-title {
     font-size: 2rem;
     font-weight: 800;
