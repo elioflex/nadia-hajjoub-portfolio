@@ -389,7 +389,14 @@ body {
 
 /* Sections générales */
 section {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
+}
+
+/* Réduire l'espacement sur mobile */
+@media (max-width: 768px) {
+    section {
+        padding: var(--space-lg) 0;
+    }
 }
 
 .section-title {
@@ -538,7 +545,14 @@ section {
 
 /* Section Expérience */
 .experience-category {
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+}
+
+/* Réduire l'espacement des catégories d'expérience sur mobile */
+@media (max-width: 768px) {
+    .experience-category {
+        margin-bottom: var(--space-lg);
+    }
 }
 
 .experience-category h3 {
