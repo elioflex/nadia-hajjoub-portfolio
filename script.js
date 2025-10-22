@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Formulaire de contact
+    // Formulaire de contact avec Netlify Forms
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -159,9 +159,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Simulation d'envoi
-            showNotification('Merci pour votre message ! Je vous répondrai bientôt.', 'success');
-            this.reset();
+            // Envoi via Netlify Forms
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Envoi en cours...';
+            submitButton.disabled = true;
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                showNotification('Merci pour votre message ! Je vous répondrai bientôt.', 'success');
+                this.reset();
+            })
+            .catch((error) => {
+                console.error('Erreur:', error);
+                showNotification('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
+            })
+            .finally(() => {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
         });
     }
 
