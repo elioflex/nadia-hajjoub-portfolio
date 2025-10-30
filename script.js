@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: encode({
                     'form-name': 'contact',
+                    'bot-field': '',
                     'name': name,
                     'email': email,
                     'subject': subject,
