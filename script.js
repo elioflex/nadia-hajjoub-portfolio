@@ -165,18 +165,35 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = 'Envoi en cours...';
             submitButton.disabled = true;
             
+            // Encode form data properly for Netlify
+            const encode = (data) => {
+                return Object.keys(data)
+                    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+                    .join("&");
+            };
+            
             fetch('/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString()
+                body: encode({
+                    'form-name': 'contact',
+                    'name': name,
+                    'email': email,
+                    'subject': subject,
+                    'message': message
+                })
             })
-            .then(() => {
-                showNotification('Merci pour votre message ! Je vous répondrai bientôt.', 'success');
-                this.reset();
+            .then(response => {
+                if (response.ok) {
+                    showNotification('Merci pour votre message ! Je vous répondrai bientôt.', 'success');
+                    this.reset();
+                } else {
+                    throw new Error('Erreur réseau');
+                }
             })
             .catch((error) => {
                 console.error('Erreur:', error);
-                showNotification('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
+                showNotification('Erreur lors de l\'envoi. Veuillez réessayer ou contactez-moi directement par email.', 'error');
             })
             .finally(() => {
                 submitButton.textContent = originalText;
